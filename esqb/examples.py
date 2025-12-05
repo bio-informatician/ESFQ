@@ -1,14 +1,19 @@
-from esqb.query_builder import QueryBuilder as Q
+from esqb import QueryBuilder
+import json
 
-# Build a sample ES query
-query = Q.boolean(
-    must=[
-        Q.match("title", "python"),
-        Q.range("published_at", gte="2020-01-01"),
-    ],
-    filter=[
-        Q.term("status", "active")
-    ]
-)
+def main():
+    qb = QueryBuilder(size=5, source=["title", "tags", "published"])
+    q = (
+        qb.match("title", "python programming", occurrence="must")
+          .term("status", "published", occurrence="filter")
+          .range("published", occurrence="must", gte="2020-01-01")
+          .geo_distance("location", lat=52.52, lon=13.405, distance="50km", occurrence="filter")
+          .aggregation("top_tags", "terms", field="tags", size=5)
+          .highlight(["title"], pre_tags=["<em>"], post_tags=["</em>"])
+          .build()
+    )
 
-print(query.to_dict())
+    print(json.dumps(q, indent=2))
+
+if __name__ == "__main__":
+    main()
