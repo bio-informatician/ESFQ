@@ -1,10 +1,10 @@
-# ESFQ -  Elasticsearch Fluent Query Builder
+# FluentES -  Elasticsearch Fluent Query Builder
 
 A small Python library for building Elasticsearch queries using a fluent API.
 
 Example:
 ```python
-from esfq import QueryBuilder
+from fluentes import QueryBuilder
 
 q = (
     QueryBuilder()
