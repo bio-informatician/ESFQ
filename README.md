@@ -64,8 +64,6 @@ This builds a query that matches documents where 'title' contains "python" and '
 - Ensure code style / linting (if applicable)  
 - Submit a Pull Request
 
-You may also include a `CONTRIBUTING.md` & optionally a `CODE_OF_CONDUCT.md` file.
-
 ## License
 
 FluentES is released under the MIT License — see the [`LICENSE`](LICENSE) file for details.
